@@ -27,6 +27,7 @@ const initialOrder = {
   note: "",
   personName: "",
   quantity: 1,
+  toppingPrice: 0,
   totalPrice: foods.price,
 };
 
@@ -55,7 +56,7 @@ function OrderForm({ onSubmit }) {
   useEffect(() => {
     calculatePrice(orderData.topping.length, orderData.quantity);
     validateForm();
-  }, [orderData]);
+  }, [orderData.topping, orderData.quantity]);
 
   // Adet değişim fonksiyonu
   function handleChangeQuantity(change) {
@@ -102,8 +103,19 @@ function OrderForm({ onSubmit }) {
 
   // Fiyat hesaplama
   function calculatePrice(toppingCount, quantity) {
-    setToppingPrice(toppingCount * foods.additional_toppings.price_per_topping);
-    setTotalPrice(quantity * foods.price + toppingPrice);
+    const calculatedToppingPrice =
+      toppingCount * foods.additional_toppings.price_per_topping;
+    const calculatedTotalPrice =
+      quantity * foods.price + calculatedToppingPrice;
+
+    setToppingPrice(calculatedToppingPrice);
+    setTotalPrice(calculatedTotalPrice);
+
+    setOrderData((prevData) => ({
+      ...prevData,
+      toppingPrice: calculatedToppingPrice,
+      totalPrice: calculatedTotalPrice,
+    }));
   }
 
   return (
@@ -309,7 +321,9 @@ function OrderForm({ onSubmit }) {
                       }}
                     >
                       <span>Seçimler</span>
-                      <span>{toppingPrice}₺</span>
+                      <span value={orderData.toppingPrice}>
+                        {toppingPrice}₺
+                      </span>
                     </div>
                     <div
                       style={{
@@ -321,7 +335,7 @@ function OrderForm({ onSubmit }) {
                       }}
                     >
                       <span>Toplam</span>
-                      <span>{totalPrice}₺</span>
+                      <span value={orderData.totalPrice}>{totalPrice}₺</span>
                     </div>
                   </div>
                   <Button
