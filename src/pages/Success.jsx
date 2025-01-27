@@ -1,6 +1,7 @@
 import React from "react";
 
-function Success() {
+function Success({ orderData }) {
+  console.log(orderData);
   return <div>Success</div>;
 }
 

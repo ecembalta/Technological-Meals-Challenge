@@ -39,34 +39,10 @@ header {
 .order-container {
   flex: 1;
   font-family: "Barlow", serif;
+  margin-top: 2rem;
 }
 
-h2 {
-  font-weight: 700;
-  font-size: 28px;
-}
 
-h3{
-  font-weight: 600;
-  font-size: 22px;
-}
-
-h6 {
-  color: #5F5F5F;
-  font-weight: 400;
-  font-size: 1rem;
-}
-
-.order-info{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.order-info-rating{
-  display: flex;
-  gap: 3rem;
-}
 
 .container-home{
   background-image: url("../images/iteration-1-images/home-banner.png");
