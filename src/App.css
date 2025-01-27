@@ -40,15 +40,20 @@ header {
   flex: 1;
   font-family: "Barlow", serif;
   margin-top: 2rem;
+  width: 540px;
+}
+
+@media (max-width: 768px) {
+  .quantity-button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 }
 
 
-
 .container-home{
-  background-image: url("../images/iteration-1-images/home-banner.png");
-  background-size:cover;
-  background-repeat: no-repeat;
-  background-position: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,6 +61,13 @@ header {
   padding-top: 2%;
   width: 100%; 
   height: 100vh;
+}
+
+.home-background{
+  background-image: url("../images/iteration-1-images/home-banner.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .home-logo {
@@ -69,6 +81,23 @@ width: 360px;
     color: white;
     width: 50%;
     margin: 2%;
+}
+
+.home-button{
+  background-color: #fdc913;
+  color: black;
+  font-family: "Barlow";
+  font-weight: 600;
+  font-size: 18px;
+  width: 193px;
+  height: 56px;
+  border-color: #fdc913;
+  border-radius: 50px;
+}
+
+.home-button:hover{
+  background-color: #FAF7F2;
+  color: black;
 }
 
 .logo {

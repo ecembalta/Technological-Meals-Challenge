@@ -1,5 +1,4 @@
 import "./App.css";
-import Success from "./pages/Success";
 import Order from "./pages/Order";
 import HomePage from "./pages/HomePage";
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom";

@@ -1,4 +1,3 @@
-import { Container } from "@mui/material";
 import { foods } from "../components/fakeData";
 import React, { useEffect, useState } from "react";
 import {
@@ -14,6 +13,7 @@ import {
   Card,
   CardTitle,
   CardBody,
+  Container,
 } from "reactstrap";
 import axios from "axios";
 import Header from "./Header";
@@ -109,7 +109,7 @@ function OrderForm({ onSubmit }) {
   return (
     <>
       <Header />
-      <Container maxWidth="sm" className="order-container">
+      <Container className="order-container">
         <Form onSubmit={handleSubmit}>
           {/* Başlık */}
           <Label
@@ -254,10 +254,10 @@ function OrderForm({ onSubmit }) {
             />
           </FormGroup>
 
-          <Row style={{ marginTop: "2rem" }}>
+          <Row style={{ margin: "2rem 0" }}>
             {/* Sipariş Adedi */}
-            <Col md={4}>
-              <ButtonGroup>
+            <Col md={4} className="quantity-button-group">
+              <ButtonGroup style={{ marginBottom: "2rem" }}>
                 <Button
                   style={{
                     backgroundColor: "#fdc913",
