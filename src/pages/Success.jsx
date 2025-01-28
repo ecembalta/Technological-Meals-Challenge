@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../images/iteration-1-images/logo.svg";
-import { Card, CardBody, CardTitle, Col, Label } from "reactstrap";
+import { Label } from "reactstrap";
+import Footer from "../components/Footer";
 function Success({ orderData }) {
   console.log(orderData);
   return (
@@ -106,6 +107,7 @@ function Success({ orderData }) {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
