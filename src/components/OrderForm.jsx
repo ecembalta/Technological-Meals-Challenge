@@ -17,6 +17,7 @@ import {
 } from "reactstrap";
 import axios from "axios";
 import Header from "./Header";
+import Footer from "./Footer";
 
 // Başlangıç sipariş verisi
 const initialOrder = {
@@ -359,6 +360,7 @@ function OrderForm({ onSubmit }) {
           </Row>
         </Form>
       </Container>
+      <Footer />
     </>
   );
 }
