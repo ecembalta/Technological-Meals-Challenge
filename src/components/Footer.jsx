@@ -1,4 +1,5 @@
 import React from "react";
+import "./Footer.css";
 import footerLogo from "..//..//images/iteration-2-images/footer/logo-footer.svg";
 import iconPin from "..//..//images/iteration-2-images/footer/icons/icon-1.png";
 import iconMail from "..//..//images/iteration-2-images/footer/icons/icon-2.png";
@@ -23,79 +24,44 @@ const instaImg = [insta1, insta2, insta3, insta4, insta5, insta6];
 
 function Footer() {
   return (
-    <div
-      style={{
-        backgroundColor: "#1A1A1A",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "white",
-        fontFamily: "Barlow",
-      }}
-    >
-      <div
-        style={{
-          padding: "2rem",
-          width: "80%",
-          display: "flex",
-          alignItems: "flex-start",
-          justifyContent: "space-between",
-        }}
-      >
-        <div style={{ width: "35%" }}>
-          <img
-            src={footerLogo}
-            alt="Footer Logo"
-            style={{ marginBottom: "2rem" }}
-          />
-          <div style={{ marginBottom: "1.8rem" }}>
+    <div className="footer">
+      <div className="footer-content">
+        <div className="footer-left">
+          <img src={footerLogo} alt="Footer Logo" className="footer-logo" />
+          <div className="contact-item">
             <img src={iconPin} alt="Pin Icon" />
             <span> 341 Londonderry Road, Istanbul Türkiye</span>
           </div>
-          <div style={{ marginBottom: "1.8rem" }}>
+          <div className="contact-item">
             <img src={iconMail} alt="Mail Icon" />
             <span> aciktim@teknolojikyemekler.com</span>
           </div>
-          <div>
+          <div className="contact-item">
             <img src={iconTel} alt="Tel Icon" />
             <span> +90 216 123 45 67</span>
           </div>
         </div>
-        <div style={{ width: "25%", paddingTop: "3.2rem" }}>
-          <span style={{ fontWeight: "bold", fontSize: "24px" }}>Hot Menu</span>
-          <ul style={{ listStyleType: "none", padding: "2rem 0" }}>
+        <div className="footer-center">
+          <span className="menu-title">Hot Menu</span>
+          <ul className="hot-menu-list">
             {hotMenu.map((item, index) => (
-              <li key={index} style={{ marginBottom: ".8rem" }}>
+              <li key={index} className="hot-menu-item">
                 {item}
               </li>
             ))}
           </ul>
         </div>
-        <div style={{ width: "35%", paddingTop: "3.2rem" }}>
-          <span
-            style={{
-              fontWeight: "bold",
-              fontSize: "24px",
-            }}
-          >
-            Instagram
-          </span>
-          <div style={{ marginTop: "1.8rem" }}>
+        <div className="footer-right">
+          <span className="instagram-title">Instagram</span>
+          <div className="instagram-grid">
             {instaImg.map((item, index) => (
-              <img key={index} src={item} style={{ margin: ".3rem" }} />
+              <img key={index} src={item} className="instagram-image" alt={`Instagram ${index + 1}`} />
             ))}
           </div>
         </div>
       </div>
-      <div
-        style={{
-          borderTop: ".1px solid gray",
-          width: "100%",
-          padding: "1rem",
-        }}
-      >
-        <span style={{ marginLeft: "10rem" }}>© 2023 Teknolojik Yemekler.</span>
+      <div className="footer-bottom">
+        <span className="copyright">© 2023 Teknolojik Yemekler.</span>
       </div>
     </div>
   );

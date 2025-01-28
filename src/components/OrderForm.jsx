@@ -16,9 +16,9 @@ import {
   Container,
 } from "reactstrap";
 import axios from "axios";
-import Header from "./Header";
+import OrderFormHeader from "./OrderFormHeader";
 import Footer from "./Footer";
-
+import "./OrderForm.css";
 // Başlangıç sipariş verisi
 const initialOrder = {
   foodName: foods.name,
@@ -56,8 +56,11 @@ function OrderForm({ onSubmit }) {
   // Formu güncelleme
   useEffect(() => {
     calculatePrice(orderData.topping.length, orderData.quantity);
-    validateForm();
   }, [orderData.topping, orderData.quantity]);
+
+  useEffect(() => {
+    validateForm();
+  }, [orderData.personName, orderData.size, orderData.crust, orderData.topping]);
 
   // Adet değişim fonksiyonu
   function handleChangeQuantity(change) {
@@ -121,65 +124,37 @@ function OrderForm({ onSubmit }) {
 
   return (
     <>
-      <Header />
+      <OrderFormHeader />
       <Container className="order-container">
         <Form onSubmit={handleSubmit}>
-          {/* Başlık */}
-          <Label
-            style={{ fontWeight: "600", fontSize: "22px", display: "block" }}
-            name="foodName"
-            value={foods.name}
-          >
+          {/* Title */}
+          <Label className="food-name" name="foodName" value={foods.name}>
             {foods.name}
           </Label>
 
-          {/* Fiyat ve Puanlar */}
+          {/* Price and Ratings */}
           <Row style={{ alignItems: "center" }}>
             <Col md={6}>
-              <Label style={{ fontWeight: "700", fontSize: "28px" }}>
-                {foods.price}₺
-              </Label>
+              <Label className="price">{foods.price}₺</Label>
             </Col>
             <Col md={6} style={{ textAlign: "right" }}>
-              <FormText
-                style={{
-                  fontWeight: "400",
-                  fontSize: "16px",
-                  color: "#5F5F5F",
-                  marginRight: "1rem",
-                }}
-              >
+              <FormText className="rating-text rating-text-margin">
                 ⭐ {foods.rating}
               </FormText>
-              <FormText
-                style={{
-                  fontWeight: "400",
-                  fontSize: "16px",
-                  color: "#5F5F5F",
-                }}
-              >
+              <FormText className="rating-text">
                 ({foods.reviews})
               </FormText>
             </Col>
           </Row>
 
-          {/* Açıklama */}
-          <p
-            style={{
-              fontSize: "14px",
-              color: "#5F5F5F",
-              marginTop: "1rem",
-              marginBottom: "2rem",
-            }}
-          >
-            {foods.description}
-          </p>
+          {/* Description */}
+          <p className="description">{foods.description}</p>
 
-          {/* Boyut ve Hamur Seçimi */}
+          {/* Size and Crust Selection */}
           <Row>
             <Col md={6}>
               <FormGroup tag="fieldset">
-                <Label style={{ fontWeight: "600" }}>Boyut Seç *</Label>
+                <Label className="section-label">Boyut Seç *</Label>
                 {foods.size_options.map((size) => (
                   <FormGroup key={size} check>
                     <Input
@@ -196,7 +171,7 @@ function OrderForm({ onSubmit }) {
             </Col>
             <Col md={6}>
               <FormGroup>
-                <Label style={{ fontWeight: "600" }}>Hamur Seç *</Label>
+                <Label className="section-label">Hamur Seç *</Label>
                 <Input
                   name="crust"
                   type="select"
@@ -214,9 +189,9 @@ function OrderForm({ onSubmit }) {
             </Col>
           </Row>
 
-          {/* Ek Malzemeler */}
+          {/* Toppings */}
           <FormGroup style={{ marginTop: "2rem" }}>
-            <Label style={{ fontWeight: "600" }}>Ek Malzemeler</Label>
+            <Label className="section-label">Ek Malzemeler</Label>
             <FormText style={{ display: "block", marginBottom: "1rem" }}>
               En fazla {foods.additional_toppings.max_toppings} malzeme
               seçebilirsiniz. Her biri{" "}
@@ -239,11 +214,9 @@ function OrderForm({ onSubmit }) {
             </Row>
           </FormGroup>
 
-          {/* Müşteri Bilgileri */}
+          {/* Customer Info */}
           <FormGroup style={{ marginTop: "2rem" }}>
-            <Label style={{ fontWeight: "600", marginBottom: "1rem" }}>
-              İsim Soyisim
-            </Label>
+            <Label className="section-label">İsim Soyisim</Label>
             <Input
               type="text"
               name="personName"
@@ -253,11 +226,9 @@ function OrderForm({ onSubmit }) {
             />
           </FormGroup>
 
-          {/* Sipariş Notu */}
+          {/* Order Note */}
           <FormGroup style={{ marginTop: "2rem" }}>
-            <Label style={{ fontWeight: "600", marginBottom: "1rem" }}>
-              Sipariş Notu
-            </Label>
+            <Label className="section-label">Sipariş Notu</Label>
             <Input
               type="textarea"
               name="note"
@@ -268,16 +239,11 @@ function OrderForm({ onSubmit }) {
           </FormGroup>
 
           <Row style={{ margin: "2rem 0" }}>
-            {/* Sipariş Adedi */}
+            {/* Quantity */}
             <Col md={4} className="quantity-button-group">
               <ButtonGroup style={{ marginBottom: "2rem" }}>
                 <Button
-                  style={{
-                    backgroundColor: "#fdc913",
-                    width: "3rem",
-                    height: "3rem",
-                    color: "black",
-                  }}
+                  className="quantity-btn"
                   onClick={() => handleChangeQuantity("decrement")}
                 >
                   -
@@ -286,16 +252,11 @@ function OrderForm({ onSubmit }) {
                   type="text"
                   name="quantity"
                   value={orderData.quantity}
-                  style={{ width: "3rem", height: "3rem", textAlign: "center" }}
+                  className="quantity-input"
                   onChange={handleChange}
                 />
                 <Button
-                  style={{
-                    backgroundColor: "#fdc913",
-                    width: "3rem",
-                    height: "3rem",
-                    color: "black",
-                  }}
+                  className="quantity-btn"
                   onClick={() => handleChangeQuantity("increment")}
                 >
                   +
@@ -303,52 +264,29 @@ function OrderForm({ onSubmit }) {
               </ButtonGroup>
             </Col>
 
-            {/* Sipariş Toplamı */}
+            {/* Order Summary */}
             <Col md={8}>
-              <Card style={{ borderRadius: "8px", padding: "1rem" }}>
+              <Card className="order-summary-card">
                 <CardBody>
-                  <CardTitle
-                    style={{ fontWeight: "600", marginBottom: "1rem" }}
-                  >
+                  <CardTitle className="order-summary-title">
                     Sipariş Toplamı
                   </CardTitle>
                   <div style={{ marginBottom: "1rem" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        fontSize: "16px",
-                        color: "#5F5F5F",
-                      }}
-                    >
-                      <span>Seçimler</span>
-                      <span value={orderData.toppingPrice}>
+                    <div className="summary-row">
+                      <span className="summary-text">Seçimler</span>
+                      <span className="summary-text" value={orderData.toppingPrice}>
                         {toppingPrice}₺
                       </span>
                     </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        fontSize: "18px",
-                        fontWeight: "600",
-                        color: "red",
-                      }}
-                    >
-                      <span>Toplam</span>
-                      <span value={orderData.totalPrice}>{totalPrice}₺</span>
+                    <div className="summary-row">
+                      <span className="total-amount">Toplam</span>
+                      <span className="total-amount" value={orderData.totalPrice}>
+                        {totalPrice}₺
+                      </span>
                     </div>
                   </div>
                   <Button
-                    style={{
-                      backgroundColor: "#fdc913",
-                      color: "black",
-                      width: "100%",
-                      fontWeight: "600",
-                      padding: "0.8rem",
-                      border: "none",
-                      borderRadius: "4px",
-                    }}
+                    className="order-button"
                     type="submit"
                     disabled={!isFormValid}
                   >

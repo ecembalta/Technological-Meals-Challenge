@@ -3,17 +3,13 @@ import logo from "../../images/iteration-1-images/logo.svg";
 import { NavLink } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 
-function Header() {
-  function handleClick(event) {
-    event.preventDefault();
-    console.log(event.target);
-  }
+function OrderFormHeader() {
 
   return (
     <>
       <header>
         <img src={logo} alt="Logo" />
-        <div role="presentation" onClick={handleClick} className="bread-crumbs">
+        <div role="presentation" className="bread-crumbs">
           <Breadcrumb>
             <BreadcrumbItem>
               <NavLink
@@ -41,4 +37,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default OrderFormHeader;

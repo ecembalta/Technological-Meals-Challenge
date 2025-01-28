@@ -8,6 +8,9 @@ import icon6 from "../../images/iteration-2-images/icons/6.svg";
 import card1 from "../../images/iteration-2-images/cta/kart-1.png";
 import card2 from "../../images/iteration-2-images/cta/kart-2.png";
 import card3 from "../../images/iteration-2-images/cta/kart-3.png";
+import food1 from "../../images/iteration-2-images/pictures/food-1.png";
+import food2 from "../../images/iteration-2-images/pictures/food-2.png";
+import food3 from "../../images/iteration-2-images/pictures/food-3.png";
 import {
   Button,
   Card,
@@ -19,7 +22,7 @@ import {
   Container,
   Row,
 } from "reactstrap";
-
+import "./HomeSection.css";
 const icons = [
   { icon: icon1, iconName: "YENİ! Kore" },
   { icon: icon2, iconName: "Pizza" },
@@ -31,119 +34,112 @@ const icons = [
 
 function HomeSection({handleClick}) {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div style={{ display: "flex", gap: "2rem", padding: "1rem" }}>
+    <div className="home-section">
+      <div className="icons-container">
         {icons.map((item, index) => (
-          <div key={index}>
-            <img style={{ transform: "scale(.7)" }} src={item.icon} />
+          <div className="icon-item" key={index}>
+            <img src={item.icon} />
             <span>{item.iconName}</span>
           </div>
         ))}
       </div>
-      <div style={{backgroundColor: "#FAF7F2", width: "100%"}}> 
-      <Container style={{
-        maxWidth: "700px",
-        padding: "2rem"
-      }}>
-        <Row>
-          <Col md={6}>
-            <Card className="text-white" style={{ height: '280px', backgroundColor: '#dc3545', padding: '0' }}>
-              <CardImg 
-                src={card1} 
-                alt="Card 1" 
-                style={{ 
-                  height: '100%',
-                  width: '100%',
-                  objectFit: 'cover',
-                  position: 'absolute'
-                }} 
-              />
-              <CardImgOverlay style={{padding: "1rem"}}>
-                <CardTitle tag="h2" style={{fontSize: "42px", width: "70%"}}>Özel Lezzetus</CardTitle>
-                <CardText>Position:Absolute Acı Burger</CardText>
-                <Button onClick={handleClick} size="sm" color="light" style={{color: '#CE2829', borderRadius: '20px', fontSize: '12px'}}>SİPARİŞ VER</Button>
-              </CardImgOverlay>
-            </Card>
-          </Col>
-          <Col md={6}>
-            <Card className="text-white mb-2" style={{ height: '135px', padding: '0' }}>
-              <CardImg 
-                src={card2} 
-                alt="Card 2" 
-                style={{ 
-                  height: '100%',
-                  width: '100%',
-                  objectFit: 'cover',
-                  position: 'absolute'
-                }} 
-              />
-              <CardImgOverlay style={{padding: "1rem"}}>
-                <CardTitle tag="h2" style={{fontSize: "18px", width: "50%"}}>Hackathlon Burger Menü</CardTitle>
-                <Button onClick={handleClick} size="sm" color="light" style={{color: '#CE2829', borderRadius: '20px', fontSize: '12px'}}>SİPARİŞ VER</Button>
-              </CardImgOverlay>
-            </Card>
-            <Card className="text-black mb-3" style={{ height: '135px', padding: '0' }}>
-              <CardImg 
-                src={card3} 
-                alt="Card 2" 
-                style={{ 
-                  height: '100%',
-                  width: '100%',
-                  objectFit: 'cover',
-                  position: 'absolute'
-                }} 
-              />
-              <CardImgOverlay style={{padding: "1rem"}}>
-                <CardText tag="h2" style={{fontSize: "18px", width: "50%"}}>Çoooook hızlı npm gibi kurye</CardText>
-                <Button onClick={handleClick} size="sm" color="light" style={{color: '#CE2829', borderRadius: '20px', fontSize: '12px'}}>SİPARİŞ VER</Button>
-              </CardImgOverlay>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-      <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <span style={{
-        textAlign: "center", 
-        fontStyle: "italic",
-        color: "#CE2829",
-        fontSize: "2rem",
-        marginBottom: "0.5rem",
-        fontFamily: "Satisfy"
-      }}>
-        en çok paketlenen menüler
-      </span>
-      <h1 style={{
-        textAlign: "center",
-        fontSize: "2rem",
-        marginBottom: "2rem"
-      }}>
-        Acıktıran Kodlara Doyuran Lezzetler
-      </h1>
+      <div className="featured-section">
+        <Container className="featured-container">
+          <Row>
+            <Col md={6}>
+              <Card className="text-white main-card">
+                <CardImg 
+                  src={card1} 
+                  alt="Card 1" 
+                  className="card-image"
+                />
+                <CardImgOverlay className="card-overlay">
+                  <CardTitle tag="h2" className="main-card-title">Özel Lezzetus</CardTitle>
+                  <CardText>Position:Absolute Acı Burger</CardText>
+                  <Button onClick={handleClick} className="card-button">SİPARİŞ VER</Button>
+                </CardImgOverlay>
+              </Card>
+            </Col>
+            <Col md={6}>
+              <Card className="text-white mb-2 small-card">
+                <CardImg 
+                  src={card2} 
+                  alt="Card 2" 
+                  className="card-image"
+                />
+                <CardImgOverlay className="card-overlay">
+                  <CardTitle tag="h2" className="small-card-title">Hackathlon Burger Menü</CardTitle>
+                  <Button onClick={handleClick} className="card-button">SİPARİŞ VER</Button>
+                </CardImgOverlay>
+              </Card>
+              <Card className="text-black mb-3 small-card">
+                <CardImg 
+                  src={card3} 
+                  alt="Card 2" 
+                  className="card-image"
+                />
+                <CardImgOverlay className="card-overlay">
+                  <CardText tag="h2" className="small-card-title">Çoooook hızlı npm gibi kurye</CardText>
+                  <Button onClick={handleClick} className="card-button">SİPARİŞ VER</Button>
+                </CardImgOverlay>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+        <div className="home-section">
+          <span className="featured-title">
+            en çok paketlenen menüler
+          </span>
+          <h1 className="featured-subtitle">
+            Acıktıran Kodlara Doyuran Lezzetler
+          </h1>
 
-      <div style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
-        {icons.map((item, index) => (
-          <div key={index} style={{border: "1px solid white", padding: "0.3rem", borderRadius: "50px", backgroundColor: "white"}}>
-            <img style={{ transform: "scale(.7)" }} src={item.icon} />
-            <span>{item.iconName}</span>
+          <div className="bottom-icons-container">
+            {icons.map((item, index) => (
+              <div className="bottom-icon-item" key={index}>
+                <img src={item.icon} />
+                <span>{item.iconName}</span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-
-      </div>
+        </div>
+        <Container className="food-container">
+          <Row>
+            <Col md={4}>
+              <Card className="food-card">
+                <CardImg src={food1} alt="Food 1" className="food-image" />
+                <CardTitle tag="h6">Terminal Pizza</CardTitle>
+                <div className="food-info">
+                  <CardText>4.9 ⭐</CardText> 
+                  <CardText>(200)</CardText>
+                  <CardText>60₺</CardText>
+                </div>
+              </Card>
+            </Col>
+            <Col md={4}>
+              <Card className="food-card">
+                <CardImg src={food2} alt="Food 2" className="food-image" />
+                <CardTitle tag="h6">Position Absolute Acı Pizza</CardTitle>
+                <div className="food-info">
+                  <CardText>4.9 ⭐</CardText> 
+                  <CardText>(200)</CardText>
+                  <CardText>60₺</CardText>
+                </div>
+              </Card>
+            </Col>
+            <Col md={4}>
+              <Card className="food-card">
+                <CardImg src={food3} alt="Food 3" className="food-image" />
+                <CardTitle tag="h6">useEffect Tavuklu Burger</CardTitle>
+                <div className="food-info">
+                  <CardText>4.9 ⭐</CardText> 
+                  <CardText>(200)</CardText>
+                  <CardText>60₺</CardText>
+                </div>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
       </div>
     </div>
   );
