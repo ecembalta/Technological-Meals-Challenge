@@ -3,6 +3,7 @@ import logo from "../../images/iteration-1-images/logo.svg";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Button } from "reactstrap";
 import Footer from "../components/Footer";
+import HomeSection from "../components/HomeSection";
 
 function HomePage() {
   const history = useHistory();
@@ -20,6 +21,7 @@ function HomePage() {
           ACIKTIM
         </Button>
       </div>
+      <HomeSection handleClick={handleClick}/>
       <Footer />
     </>
   );
