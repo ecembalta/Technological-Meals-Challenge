@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import OrderForm from "../components/OrderForm";
-import Success from "./Success";
+import Success from "../components/Success";
 
 function Order() {
   const [orderData, setOrderData] = useState(null);

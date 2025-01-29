@@ -19,6 +19,7 @@ import axios from "axios";
 import OrderFormHeader from "./OrderFormHeader";
 import Footer from "./Footer";
 import "./OrderForm.css";
+
 // Başlangıç sipariş verisi
 const initialOrder = {
   foodName: foods.name,
@@ -53,14 +54,6 @@ function OrderForm({ onSubmit }) {
     }
   }
 
-  // Formu güncelleme
-  useEffect(() => {
-    calculatePrice(orderData.topping.length, orderData.quantity);
-  }, [orderData.topping, orderData.quantity]);
-
-  useEffect(() => {
-    validateForm();
-  }, [orderData.personName, orderData.size, orderData.crust, orderData.topping]);
 
   // Adet değişim fonksiyonu
   function handleChangeQuantity(change) {
@@ -104,6 +97,15 @@ function OrderForm({ onSubmit }) {
       console.error("Sipariş gönderimi başarısız:", error);
     }
   }
+
+    // Formu güncelleme
+    useEffect(() => {
+      calculatePrice(orderData.topping.length, orderData.quantity);
+    }, [orderData.topping, orderData.quantity]);
+  
+    useEffect(() => {
+      validateForm();
+    }, [orderData.personName, orderData.size, orderData.crust, orderData.topping]);
 
   // Fiyat hesaplama
   function calculatePrice(toppingCount, quantity) {
