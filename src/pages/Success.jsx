@@ -106,6 +106,8 @@ function Success({ orderData }) {
             </div>
           </div>
         </div>
+
+        <div data-test="basari-mesaji">Siparişiniz alınmıştır</div>
       </div>
       <Footer />
     </>
